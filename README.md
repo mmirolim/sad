@@ -4,11 +4,11 @@ according to the following instructions and finally outputs the results to conso
 
 The application supports the following command line arguments (only the first
 one is mandatory):
-
+```
 -File <path>             full path to the input file
 -SortByStartDate         sort results by column "Start date" in ascending order
 -Project <project id>    filter results by column "Project"
-
+```
 The following requirements define the program functionality
 and refer to the data sample below:
 
@@ -33,8 +33,7 @@ as NULL. Those printed as empty strings.
 * In case of an invalid source value (in a date, money or Complexity column) a
 descriptive error message should be printed to console and the program terminated.
 
-    The following input example can be downloaded from [here](https://sievo-backend-assignment.azurewebsites.net/Data/ExampleData.tsv).
-
+```
 /***********************************************************************************************************************************************/
 # Input file contents are between the two lines marked with stars
 Project	Description	Start date	Category	Responsible	Savings amount	Currency	Complexity
@@ -47,6 +46,7 @@ Project	Description	Start date	Category	Responsible	Savings amount	Currency	Comp
 6	Black and white logo paper	2012-06-01 00:00:00.000	Office supplies	Clark Kent	4880.199567	EUR	Simple
 6	Black and white logo paper	2012-06-01 00:00:00.000	Office supplies	Clark Kent	4880.199567	EUR	Simple
 /***********************************************************************************************************************************************/
+```
 
 ## Quick start
 Rust and Cargo should be installed.

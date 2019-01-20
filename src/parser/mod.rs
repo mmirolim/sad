@@ -52,10 +52,10 @@ pub fn write_tsv<W: Write>(mut writer: W, storage: &Storage) {
 
 #[cfg(test)]
 mod tests {
-	use std::str;
-	
+    use std::str;
+
     use super::*;
-	
+
     #[test]
     fn test_parse_tsv() {
         struct Data(&'static str, usize);
@@ -92,8 +92,8 @@ Moderate	2	Substitute Crème fraîche with evaporated milk in ice-cream products
 
     #[test]
     fn test_write_tsv() {
-    // column, projects, output
-    struct Data(Vec<&'static str>, Vec<Vec<&'static str>>, &'static str);
+        // column, projects, output
+        struct Data(Vec<&'static str>, Vec<Vec<&'static str>>, &'static str);
 
         let cases = vec![
 			Data(
@@ -145,12 +145,12 @@ Simple	1	Harmonize Lactobacillus acidophilus sourcing	2014-01-01 00:00:00.000	Da
         let mut storage: Storage = Storage::new(vec![Box::new(|_p| true)]);
 
         for Data(columns, records, expected) in cases {
-        	storage.set_columns(columns);
-        	for rec in records.iter() {
-        		storage.insert(rec.to_vec()).unwrap();
-        	}
+            storage.set_columns(columns);
+            for rec in records.iter() {
+                storage.insert(rec.to_vec()).unwrap();
+            }
 
-			let mut buf: Vec<u8> = Vec::new();
+            let mut buf: Vec<u8> = Vec::new();
             write_tsv(&mut buf, &mut storage);
 
             assert_eq!(str::from_utf8(buf.as_slice()).unwrap(), expected);

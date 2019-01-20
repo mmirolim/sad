@@ -9,6 +9,7 @@ pub mod project {
     use std::collections::HashMap;
     use std::fmt;
 
+    pub const DATE_FORMAT: &str = "%Y-%m-%d %H:%M:%S.%3f";
     pub const NULL_STR: &str = "NULL";
     pub const COLUMN_NAMES: [&'static str; 8] = [
         "Project",
@@ -40,11 +41,9 @@ pub mod project {
             }
             let start_date: NaiveDateTime;
 
-            if let Ok(v) = NaiveDateTime::parse_from_str(record[2], "%Y-%m-%d %H:%M:%S.%f") {
+            if let Ok(v) = NaiveDateTime::parse_from_str(record[2], DATE_FORMAT) {
                 start_date = v;
             } else {
-                // TODO rm
-                println!("new record {:?}", record);
                 return Err(format!("start date parse error {}", record[2]));
             }
 
@@ -77,7 +76,7 @@ pub mod project {
             dic.insert(COLUMN_NAMES[1], self.description.clone());
             dic.insert(
                 COLUMN_NAMES[2],
-                self.start_date.format("%Y-%m-%d %H:%M:%S.%3f").to_string(),
+                self.start_date.format(DATE_FORMAT).to_string(),
             );
             dic.insert(COLUMN_NAMES[3], self.category.clone());
             dic.insert(COLUMN_NAMES[4], self.responsible.clone());
